@@ -25,7 +25,7 @@ contract ERC721{
     //Mapping from owner to number of owned tokens
     mapping(address => uint256) private _OwnedTokensCount;
 
-    function exists(uint256 tokenId) internal view returns(bool){
+    function _exists(uint256 tokenId) internal view returns(bool){
         //setting the address from tokenOwner at the tokenId
         address owner = _tokenOwner[tokenId];
         //return if the adress is not 0
@@ -33,11 +33,11 @@ contract ERC721{
     }
 
     //Minting function
-    function mint(address to, uint256 tokenId) internal{
+    function _mint(address to, uint256 tokenId) internal{
         //requires that the address isnt zero
         require(to != address(0),'ERC721: minting to the zero address');
         //requires that the token does not exisit
-        require(!exists(tokenId), 'ERC721: token already minted');
+        require(!_exists(tokenId), 'ERC721: token already minted');
         //Adding a new address with a token id for minting
         _tokenOwner[tokenId] = to;
         //Keeping each address that is minting
