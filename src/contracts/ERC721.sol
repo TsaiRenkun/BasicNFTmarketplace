@@ -55,7 +55,7 @@ contract ERC721{
     }
 
     //Minting function
-    function _mint(address to, uint256 tokenId) internal{
+    function _mint(address to, uint256 tokenId) internal virtual{
         //requires that the address isnt zero
         require(to != address(0),'ERC721: minting to the zero address');
         //requires that the token does not exisit
