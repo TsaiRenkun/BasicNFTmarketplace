@@ -16,14 +16,36 @@ contract ERC721{
     event Transfer(
         address indexed from, 
         address indexed to, 
-        uint256 indexed tokenId
-    );
+        uint256 indexed tokenId);
 
     //Mapping from token id to owner
     mapping(uint256 => address) private _tokenOwner; 
 
     //Mapping from owner to number of owned tokens
     mapping(address => uint256) private _OwnedTokensCount;
+
+
+    // @notice Count all NFTs assigned to an owner
+    // @dev NFTs assigned to the zero address are considered invalid, and this
+    //  function throws for queries about the zero address.
+    // @param _owner An address for whom to query the balance
+    // @return The number of NFTs owned by `_owner`, possibly zero
+    function balanceOf(address _owner) public view returns (uint256){
+        require(_owner != address(0), "Address cannot be a zero address");
+        return _OwnedTokensCount[_owner];
+    }
+
+    // @notice Find the owner of an NFT
+    // @dev NFTs assigned to zero address are considered invalid, and queries
+    //  about them do throw.
+    // @param _tokenId The identifier for an NFT
+    // @return The address of the owner of the NFT
+    function ownerOf(uint256 _tokenId) external view returns (address){
+        address owner = _tokenOwner[_tokenId];
+        require(owner != address(0), "Address does not exist");
+        return owner;
+    }
+
 
     function _exists(uint256 tokenId) internal view returns(bool){
         //setting the address from tokenOwner at the tokenId
@@ -45,4 +67,5 @@ contract ERC721{
 
         emit Transfer(address(0), to, tokenId);
     }
+
 }
