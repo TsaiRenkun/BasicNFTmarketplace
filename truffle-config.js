@@ -1,6 +1,6 @@
 
 module.exports = {
-
+    
   networks: {
     // Useful for testing. The `development` name is special - truffle uses it by default
     // if it's defined here and no other network is specified at the command line.
@@ -13,11 +13,11 @@ module.exports = {
      port: 7545,            // Standard Ethereum port (default: none)
      network_id: "*",       // Any network (default: none) "* means any network!"
     },
-
-    contracts_directory: '/src/contracts',
-    contracts_build_directory: './src/abis',
   },
 
+  contracts_directory: './src/contracts/',
+  contracts_build_directory: './src/abis',
+  
   // Configure your compilers
   compilers: {
     solc: {
