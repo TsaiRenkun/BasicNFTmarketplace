@@ -46,7 +46,7 @@ contract ERC721Enumerable is ERC721 {
     // @return The token identifier for the `_index`th NFT,
     //  (sort order not specified)
     function tokenByIndex(uint256 _index) public view returns (uint256){
-        require(_index >= totalSupply(), "Global index out of bounds");
+        require(_index < totalSupply(), "Global index out of bounds");
         return _allTokensIndex[_index];
     }
     // @notice Enumerate NFTs assigned to an owner
